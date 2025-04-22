@@ -1,6 +1,3 @@
-# s - liczba słów
-# C przeniesienie, S suma
-#
 from addons.bit_operations import *
 
 
@@ -30,7 +27,7 @@ def monpro_sos(a: list[int], b: list[int], n: list[int], n_prime: list[int], w: 
     # Step 2 -> t + m * n
     for i in range(s):
         carry = 0
-        m = t[i]*n_prime[0]%W
+        m = (t[i]*n_prime[0])%W
         for j in range(s):
             carry, sum_result = bin_add_num(t[i + j] + carry, m*n[j], w)
             t[i + j] = sum_result

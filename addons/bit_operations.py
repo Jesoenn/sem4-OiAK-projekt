@@ -1,12 +1,15 @@
 def bin_add_num(a: int, b:int, word_bit_length: int) -> tuple[int, int]:
     """
+    Przeniesienie może wynieść więcej niż 1, więc musi być pętla. (w sos jako argument a jest dane równanie!)
     :return: carry, sum
     """
-    max_value = (1<<word_bit_length)-1        # max value for w bits
-    sum_result = a + b
-    carry = 1 if sum_result > max_value else 0
-    sum_result = sum_result & max_value       # cut to match max_value bits number
-    return carry, sum_result
+    max_value = (1 << word_bit_length) - 1
+    total_sum = a+b
+    carry = total_sum >> word_bit_length    # move right by word. Oldest bits as int are carry
+    result = total_sum & max_value
+    return carry, result
+
+
 
 def bin_add_arr(array: list[int], carry:int, index: int, word_bit_length: int):
     """
