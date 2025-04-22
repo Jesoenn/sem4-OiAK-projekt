@@ -1,6 +1,8 @@
 from addons.word_splitter import *
 
 # r * r^-1 - n * n' = 1
+
+# TU JEST BLAD JAKIS
 def extended_euclidean(r: int, n: int) -> tuple[int, int]:
     if n == 0:
         return 1, 0
@@ -21,7 +23,10 @@ def calc_n_prime_sos(n: int, words, bits_in_word) -> int:
         raise ValueError("n musi być nieparzyste")
     r = 1 << (words * bits_in_word)             # r = 2^(s * w)
     r_inv, n_prime = extended_euclidean(r, n)   # extended Euclidean algorithm
-    if n_prime < 0:
-        n_prime *= -1
-    #n_prime = n_prime%r                       # n > 0
+    print()
+    print("GCD:\nr^-1 = ",r_inv)
+    print("n_prime = ",n_prime)
+    print()
+
+    n_prime = (n_prime*-1)%r                       # n > 0
     return n_prime
