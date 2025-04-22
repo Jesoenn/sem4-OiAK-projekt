@@ -21,7 +21,7 @@ def int_to_bit_words(number: int, s: int, w: int):
     return reverse_words(words) # reverse list -> youngest words to oldest (needed for SOS)
 
 
-def reverse_words(words: list[int]):
+def reverse_words(words: list[int]) -> list[int]:
     """
     :param words: słowa od najstarszych do najmłodszych
     :return: słowa od najmłodszych do najstarszych
@@ -30,3 +30,16 @@ def reverse_words(words: list[int]):
     for i in range(len(words) - 1, -1, -1):
         new_words.append(words[i])
     return new_words
+
+
+def bit_words_to_int(words: list[int], w: int) -> int:
+    """
+    :param words: little-endian (youngest to oldest)
+    :param w: bits per word
+    :return: number as int
+    """
+    number = 0
+    for i in range(len(words)):
+        number += words[i] * 1<<(w*i)
+
+    return number

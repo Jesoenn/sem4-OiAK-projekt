@@ -23,10 +23,6 @@ def calc_n_prime_sos(n: int, words, bits_in_word) -> int:
         raise ValueError("n musi być nieparzyste")
     r = 1 << (words * bits_in_word)             # r = 2^(s * w)
     r_inv, n_prime = extended_euclidean(r, n)   # extended Euclidean algorithm
-    print()
-    print("GCD:\nr^-1 = ",r_inv)
-    print("n_prime = ",n_prime)
-    print()
-
-    n_prime = (n_prime*-1)%r                       # n > 0
+    # z jakiegos powodu działa
+    n_prime = (n_prime*-1)%r                       # n has to be > 0
     return n_prime
