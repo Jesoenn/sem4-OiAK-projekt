@@ -6,9 +6,6 @@ from addons.gcd import *
 
 
 
-
-# EXAMPLE int_to_bit_words
-
 # a * b mod n = 14 * 30 mod 11 = 2
 
 s = 3  # words
