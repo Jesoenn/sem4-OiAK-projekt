@@ -4,14 +4,13 @@
 from addons.bit_operations import *
 
 
-def monpro_sos(a: list[int], b: list[int], n, n_prime, w: int):
+def monpro_sos(a: list[int], b: list[int], n: list[int], n_prime: list[int], w: int):
     """
     :param a: mnożna w przestrzeni montgomery'ego
     :param b: mnożnik w przestrzeni montgomery'ego
     :param n: modulo, nieparzyste
     :param n_prime: -n^{-1} mod r
-    :param r: 2^(s*w), gdzie s - liczba słów, w - wielkość słowa w bitach
-    :param w:
+    :param w: dlugość 1 słowa w bitach
     :return: a*b = u * r^-1 mod n
     """
     s = len(a)  # words number
