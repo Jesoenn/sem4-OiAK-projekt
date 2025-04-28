@@ -13,7 +13,6 @@ def monpro_sos(a: list[int], b: list[int], n: list[int], n_prime: list[int], w: 
     s = len(a)  # words number
     W = 1 << w  # move 1 to the left (w bits) -> max word number
     t = [0]*(2*s+1)  # 2s+1 words
-    r = s*w # shift by s*w bits
 
     # Step 1 -> a * b | little-endian -> a[0]: least significant, a[max]: most significant !!
     # Example: s,w=2 | a = 7(10) = 01 11 (big-endian) = 11 01 (little-endian)
@@ -33,9 +32,11 @@ def monpro_sos(a: list[int], b: list[int], n: list[int], n_prime: list[int], w: 
             t[i + j] = sum_result
         bin_add_arr(t,carry,i+s,w)           # add with carry from t[i+s]
 
+
     # Step 2.5 -> create u -> (t+m*n)/r
     u = [0]*(s+1)       # u length = s+1
-    for i in range(s):
+    # FIX -> change range(s) to range(s+1)
+    for i in range(s+1):
         u[i] = t[i+s]
 
     # Step 3 -> u - n (word by word)
@@ -50,16 +51,3 @@ def monpro_sos(a: list[int], b: list[int], n: list[int], n_prime: list[int], w: 
         return t[:s]  # t < n
     else:
         return u[:s]  # t >= n
-
-
-#
-# #testy
-#
-# a = [3,1] # 7
-# b = [2, 0] # 2
-# s = 2
-# w = 2
-# t = [0]*(2*s+1)  # 2s+1 words
-#
-#
-# print(t)

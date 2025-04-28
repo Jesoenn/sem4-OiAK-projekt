@@ -1,6 +1,6 @@
 def bin_add_num(a: int, b:int, word_bit_length: int) -> tuple[int, int]:
     """
-    Przeniesienie może wynieść więcej niż 1, więc musi być pętla. (w sos jako argument a jest dane równanie!)
+    Przeniesienie może wynieść więcej niż 1, więc musi być tak(w sos jako argument a jest dane równanie!)
     :return: carry, sum
     """
     max_value = (1 << word_bit_length) - 1

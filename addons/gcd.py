@@ -12,7 +12,7 @@ def extended_euclidean(r: int, n: int) -> tuple[int, int]:
         return r_inv, n_prime
 
 
-def calc_n_prime_sos(n: int, words, bits_in_word) -> int:
+def calc_n_prime_sos(n: int, words: int, bits_in_word: int) -> int:
     """
     :param n: modulo calego algorytmu, liczba nieparzysta
     :param words: (s) słowa
