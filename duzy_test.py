@@ -1,8 +1,6 @@
-from addons.word_splitter import *
-from addons.bit_operations import *
-from algorithms.sos import *
 from algorithms.cios import *
 from addons.gcd import *
+from core.timer import *
 
 # 7 BITÓW WSZYSTKO OK
 # od 8 zaczynają być błędy
@@ -14,6 +12,8 @@ a = 14234 # 1110
 b = 30322
 
 max_value = (1 << s*w) - 1          #maksymalne n dla w bitów
+timer = Timer()
+timer.start()
 for i in range(1, max_value, 2):
     n = i
     n_int = n
@@ -47,3 +47,5 @@ for i in range(1, max_value, 2):
         print("Oczekiwany wynik:", (a * b) % n_int)
         print("Wynik:           ", received_number)
         input("Naciśnij Enter, aby kontynuować...")
+timer.stop()
+print(timer.time)
