@@ -37,4 +37,20 @@ def parse_arguments():
             print("ERROR: --min_n is bigger than --max_n.")
             sys.exit(1)
 
+    max_value = (1 << (args.words * args.bits)) - 1
+    if args.min_n is not None:
+        if args.min_n > max_value:
+            print("ERROR: min_n is larger than max number:",max_value)
+            sys.exit(1)
+
+    if args.max_n is not None:
+        if args.max_n > max_value:
+            print("ERROR: max_n is larger than max number:",max_value)
+            sys.exit(1)
+
+    if args.n is not None:
+        if args.n > max_value:
+            print("ERROR: n is larger than max number:",max_value)
+            sys.exit(1)
+
     return args
