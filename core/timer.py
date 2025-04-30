@@ -14,5 +14,5 @@ class Timer:
         """Stop timer, [ms], 2 precision"""
         if self.start_time != 0:
             self.time = (time.perf_counter() - self.start_time) * 1000  # konwersja na ms
-            self.time = round(self.time, 2)
+            self.time = round(self.time, 3)
             self.start_time = 0

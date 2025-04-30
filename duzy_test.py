@@ -1,4 +1,5 @@
 from algorithms.cios import *
+from algorithms.sos import *
 from addons.gcd import *
 from core.timer import *
 
@@ -6,15 +7,19 @@ from core.timer import *
 # od 8 zaczynają być błędy
 
 
-s = 3  # words
-w = 5 # word length
-a = 14234 # 1110
-b = 30322
+s = 2  # words
+w = 200 # word length
+a = 12313231 # 1110
+b = 25311363
+
+x = int(123456789012345678901234567890123456789012345678901234567890)
+print(x)
+input("STOP")
 
 max_value = (1 << s*w) - 1          #maksymalne n dla w bitów
 timer = Timer()
-timer.start()
-for i in range(1, max_value, 2):
+
+for i in range((1 << (s*w)-1)-1, max_value, 2):
     n = i
     n_int = n
 
@@ -31,12 +36,13 @@ for i in range(1, max_value, 2):
     n = int_to_bit_words(n, s, w)
     mont_a = int_to_bit_words(mont_a, s, w)
     mont_b = int_to_bit_words(mont_b, s, w)
+    timer.start()
+    result_mont = monpro_sos(mont_a, mont_b, n, n_prime, w)  # in montgomery space
+    timer.stop()
+    final_result = monpro_sos(result_mont, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], n, n_prime,w)  # multiply by 1, to get normal number
 
-    # result_mont = monpro_sos(mont_a, mont_b, n, n_prime, w)  # in montgomery space
-    # final_result = monpro_sos(result_mont, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], n, n_prime,w)  # multiply by 1, to get normal number
-
-    result_mont = monpro_cios(mont_a, mont_b, n, n_prime, w)  # in montgomery space
-    final_result = monpro_cios(result_mont, [1, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0], n, n_prime, w)  # multiply by 1, to get normal number
+    # result_mont = monpro_cios(mont_a, mont_b, n, n_prime, w)  # in montgomery space
+    # final_result = monpro_cios(result_mont, [1, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0], n, n_prime, w)  # multiply by 1, to get normal number
 
     #print()
     expected_number = (a * b) % n_int
@@ -47,5 +53,4 @@ for i in range(1, max_value, 2):
         print("Oczekiwany wynik:", (a * b) % n_int)
         print("Wynik:           ", received_number)
         input("Naciśnij Enter, aby kontynuować...")
-timer.stop()
-print(timer.time)
+    print("Testowane n:", i, "CZAS:",timer.time)
