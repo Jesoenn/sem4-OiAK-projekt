@@ -59,10 +59,10 @@ def run_simulation(args: argparse.Namespace):
     print("Is result correct: ",expected_number==received_number)
     print("Time:",timer.time)
 
-    if fileName:
+    if file_name:
         total_bits = w * s
         alg_name = "SOS" if algorithm == 0 else "CIOS"
         formatted_time = str(timer.time).replace('.', ',')
         # Algorithm Bits Words TotalBits Time[ms] Correct(Y/N)
-        with open(fileName, "a") as f:
+        with open(file_name, "a") as f:
             f.write(f"{alg_name}\t{s}\t{w}\t{total_bits}\t{formatted_time}\t{expected_number == received_number}\n")
