@@ -22,7 +22,7 @@ def run_simulation(args: argparse.Namespace):
     if b is None:
         b = random.randint(0, n - 1)
 
-    fileName = args.file
+    file_name = args.file
 
     timer = Timer()
     # simulation
