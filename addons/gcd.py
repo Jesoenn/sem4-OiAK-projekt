@@ -1,8 +1,4 @@
-from addons.word_splitter import *
-
 # r * r^-1 - n * n' = 1
-
-# TU JEST BLAD JAKIS
 def extended_euclidean(r: int, n: int) -> tuple[int, int]:
     if n == 0:
         return 1, 0

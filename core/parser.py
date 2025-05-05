@@ -10,7 +10,8 @@ def positive_int(value):
 # --help
 def parse_arguments():
     parser = argparse.ArgumentParser(
-        description="Montgomery multiplication algorithms. All numbers >0"
+        description="Montgomery multiplication algorithms. All numbers >0\n"
+                    "Max 1600 bits because of recursion for n_prime"
     )
 
     parser.add_argument("algorithm", type=int, choices=[0, 1],
@@ -25,29 +26,9 @@ def parse_arguments():
                         help="Optional b to multiply")
     parser.add_argument("--n", type=positive_int, default=None,
                         help="n for modulo")
-    parser.add_argument("--max_n", type=positive_int, default=None,
-                        help="minimum n for modulo")
-    parser.add_argument("--min_n", type=positive_int, default=None,
-                        help="maximum n for modulo")
 
     args = parser.parse_args()
-    # check if min_n > max_n
-    if args.min_n is not None and args.max_n is not None:
-        if args.min_n > args.max_n:
-            print("ERROR: --min_n is bigger than --max_n.")
-            sys.exit(1)
-
     max_value = (1 << (args.words * args.bits)) - 1
-    if args.min_n is not None:
-        if args.min_n > max_value:
-            print("ERROR: min_n is larger than max number:",max_value)
-            sys.exit(1)
-
-    if args.max_n is not None:
-        if args.max_n > max_value:
-            print("ERROR: max_n is larger than max number:",max_value)
-            sys.exit(1)
-
     if args.n is not None:
         if args.n > max_value:
             print("ERROR: n is larger than max number:",max_value)
