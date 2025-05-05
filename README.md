@@ -17,3 +17,7 @@ montgomery.py --help
 # Odpalenie dla algorytmu SOS dla 10 słów 64 bitowych i zapis wyniku do pliku Testy.txt
 montgomery.py 0 10 64 --file Testy.txt 
 ```
+4. Format pliku wyjściowego
+```
+Algorytm  Słowa  Bity_Na_Słowo  Suma_Bitów  Czas[ms]  Poprawne?(True/False)
+```
