@@ -24,18 +24,30 @@ def monpro_cios(a: list[int], b: list[int], n: list[int], n_prime: list[int], w:
         t[s+1] = carry
         carry = 0
 
+
         m = (t[0] * n_prime[0]) % W
 
-        for j in range(s):
-            carry, sum_result = bin_add_num(t[j] + carry, m * n[j], w)
-            t[j] = sum_result
+        # Ulepszona wersja z pdf
 
-        carry,sum_result = bin_add_num(t[s], carry, w)
-        t[s] = sum_result
-        t[s+1] = t[s+1]+carry
+        carry, sum_result = bin_add_num(t[0], m*n[0], w)
+        for j in range(1, s):
+            carry, sum_result = bin_add_num(t[j] + carry, m*n[j],w)
+            t[j-1] = sum_result     # t[j] -> t[j-1]
 
-        for j in range (s+1):
-            t[j]=t[j+1]
+        carry, sum_result = bin_add_num(t[s], carry,w)
+        t[s-1] = sum_result
+        t[s] = t[s+1] + carry
+        # Stara wersja
+        # for j in range(s):
+        #     carry, sum_result = bin_add_num(t[j] + carry, m * n[j], w)
+        #     t[j] = sum_result
+
+        # carry,sum_result = bin_add_num(t[s], carry, w)
+        # t[s] = sum_result
+        # t[s+1] = t[s+1]+carry
+
+        # for j in range (s+1):     # to tez do usunięcia
+        #     t[j]=t[j+1]
 
 
     u = t[:s+1]

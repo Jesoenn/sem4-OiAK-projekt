@@ -54,6 +54,7 @@ def run_simulation(args: argparse.Namespace):
 
     expected_number = (a * b) % n_int
     received_number = bit_words_to_int(final_result, w)
+    print("Algorithm:",algorithm,"words:",s,"bits:",w)
     print("Result:",received_number)
     print("Expected result:",expected_number)
     print("Is result correct: ",expected_number==received_number)

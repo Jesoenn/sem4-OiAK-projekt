@@ -11,7 +11,7 @@ class Timer:
         self.time = 0.00
 
     def stop(self):
-        """Stop timer, [ms], 2 precision"""
+        """Stop timer, [ms], 3 precision"""
         if self.start_time != 0:
             self.time = (time.perf_counter() - self.start_time) * 1000  # konwersja na ms
             self.time = round(self.time, 3)
